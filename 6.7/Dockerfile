@@ -1,6 +1,6 @@
 # DOCKER-VERSION 1.10.3
 # VERSION        0.1
-# SOURCE         https://github.com/mesosinfo/ubuntu-sshd
+# SOURCE         https://github.com/mesosinfo/centos-sshd
 
 FROM centos:6.7
 MAINTAINER Yong Zhang<zhangyong.net@qq.com>
