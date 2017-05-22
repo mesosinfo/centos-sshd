@@ -3,13 +3,27 @@
 # SOURCE         https://github.com/mesosinfo/centos-sshd
 
 FROM centos:7
-MAINTAINER Yong Zhang<zhangyong.net@qq.com>
+MAINTAINER Yong Zhang<zhangyong.net@gmail.com>
 ########################################################################## ### update glibc-common for locale files
-RUN yum -y install openssh openssh-clients openssh-server
-EXPOSE 22
+RUN yum update -y glibc-common
+
+##########################################################################
+# all yum installations here
+RUN yum install -y sudo passwd openssh openssh-server openssh-clients tar screen crontabs strace telnet perl libpcap bc patch ntp dnsmasq
+
+##########################################################################
 RUN ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa
 RUN ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa
+
+# start sshd to generate host keys, patch sshd_config and enable yum repos
+RUN (service sshd start; \
+     sed -i 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config; \
+     sed -i 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config; \
+     sed -i 's/#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+##########################################################################
+# passwords 
 RUN echo "root:rootroot" | chpasswd
-RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
-CMD ["/usr/sbin/sshd", "-D"]
+
+EXPOSE 22
+CMD /usr/sbin/sshd -D
