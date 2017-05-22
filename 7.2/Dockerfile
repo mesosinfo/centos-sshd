@@ -2,7 +2,7 @@
 # VERSION        0.1
 # SOURCE         https://github.com/mesosinfo/centos-sshd
 
-FROM centos:7.2.1511
+FROM centos:7.1.1503
 MAINTAINER Yong Zhang<zhangyong.net@gmail.com>
 ########################################################################## ### update glibc-common for locale files
 RUN yum update -y glibc-common
