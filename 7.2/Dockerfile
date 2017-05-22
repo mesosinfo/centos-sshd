@@ -2,15 +2,15 @@
 # VERSION        0.1
 # SOURCE         https://github.com/mesosinfo/centos-sshd
 
-FROM centos:7.2.1511
+FROM centos:7
 MAINTAINER Yong Zhang<zhangyong.net@gmail.com>
 ########################################################################## ### update glibc-common for locale files
 RUN yum update -y glibc-common
 
 ##########################################################################
 # all yum installations here
-# RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontabs strace telnet perl libpcap bc patch ntp dnsmasq
-RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontabs strace telnet perl libpcap bc patch ntp
+RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontabs strace telnet perl libpcap bc patch ntp dnsmasq
+#RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontabs strace telnet perl libpcap bc patch ntp
 
 ##########################################################################
 # add epel repository
