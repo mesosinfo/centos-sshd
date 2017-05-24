@@ -1,7 +1,6 @@
 # DOCKER-VERSION 1.12
 # VERSION        0.1
 # SOURCE         https://github.com/mesosinfo/centos-sshd
-
 FROM mesosinfo/centos-systemd:7.3
 MAINTAINER Yong Zhang<zhangyong.net@gmail.com>
 ########################################################################## ### update glibc-common for locale files
@@ -28,8 +27,8 @@ RUN (service sshd start; \
 RUN echo "root:rootroot" | chpasswd
 
 #
-systemctl enable sshd.service
-systemctl start sshd.service
+#systemctl enable sshd.service
+#systemctl start sshd.service
 
 #
 EXPOSE 22
