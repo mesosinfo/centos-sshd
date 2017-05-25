@@ -9,6 +9,7 @@ RUN yum update -y glibc-common
 ##########################################################################
 # all yum installations here
 RUN yum install -y net-tools
+RUN yum install -y initscripts
 RUN yum install -y sudo passwd openssh openssh-server openssh-clients
 RUN yum install -y tar screen crontabs strace telnet perl libpcap bc patch ntp dnsmasq
 
